@@ -1,0 +1,2 @@
+Scaffold-DbContext Name=ConnectionStrings:Context Microsoft.EntityFrameworkCore.Sqlite -OutputDir Scaffold -Context ScaffoldContext -Force
+ 

@@ -1,0 +1,8 @@
+# Vue-Version gehört nicht in dieses Repository
+SudokuVue/
+
+# .NET Build-Ausgabe und lokale Visual-Studio-Dateien
+bin/
+obj/
+.vs/
+*.user

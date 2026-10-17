@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="script.js"></script>  
+</head>
+<body>
+    <style>  
+    body {
+      width: 500px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0 auto;
+      padding: 20px;
+    } 
+    
+    /* Header Styles */
+    .sudokuHeader {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 36px;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      letter-spacing: 1px;
+      width: 355px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Timer Styles */
+    .timer {
+      width: 180px;
+      height: 30px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      margin: 0 auto 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .container {
+      width: 355px;
+      margin: 0 auto;
+    }
+
+    .Sudoku {
+      border-style: solid;
+      border-width: 2px;
+      border-color: gray;
+      margin: 0px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .dark {
+      background-color: gray !important;
+      color: white;
+    }
+
+    .error {
+      background-color: red !important;
+      color: white;
+    }
+
+    table {
+      border-spacing: 0px;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+      width: 355px;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      width: 355px;
+      justify-content: space-between;
+    }
+
+    .visualBacktracking {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .visualBacktracking input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #007bff;
+      border-radius: 4px;
+      background-color: white;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-right: 8px;
+    }
+
+    .visualBacktracking input[type="checkbox"]:checked {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .visualBacktracking input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 6px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    /* Sudoku Input Fields */
+    .Sudoku input {
+      text-align: center;
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      margin: 2px;
+      box-sizing: border-box;
+    }
+
+    .Sudoku input:focus {
+      outline: none;
+      border: 1px solid #007bff;
+      box-shadow: 0 0 3px #007bff;
+    }
+
+    /* Button Styles */
+    .solveButton {
+      background-color: #28a745;
+      margin-top: 10px;
+      width: 355px;
+      height: 35px;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      border: none;
+      display: block;
+    }
+
+    .solveButton:hover {
+      background-color: #218838;
+      transform: translateY(-1px);
+    }
+
+    .solveButtonInvalid {
+      background-color: #dc3545;
+      margin-top: 10px;
+      width: 355px;
+      height: 35px;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      border: none;
+      display: block;
+    }
+
+    .sendButton {
+      background-color: #007bff;
+      color: white;
+      width: 100px;
+      height: 35px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .sendButton:hover {
+      background-color: #0069d9;
+    }
+
+    .resetButton {
+      background-color: #dc3545;
+      color: white;
+      width: 100px;
+      height: 35px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .resetButton:hover {
+      background-color: #c82333;
+    }
+
+    .generateButton {
+      width: 355px;
+      height: 35px;
+      border-radius: 8px;
+      background-color: #f39c12;
+      color: white;
+      margin-top: 25px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      border: none;
+      display: block;
+    }
+
+    .generateButton:hover {
+      background-color: #e67e22;
+    }
+
+    .loadButton {
+      background-color: #17a2b8;
+      color: white;
+      width: 100px;
+      height: 35px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .loadButton:hover {
+      background-color: #138496;
+    }
+
+    .save {
+      width: 280px;
+      height: 30px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #28a745, #218838);
+      color: white;
+      margin: 25px auto 0;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .load {
+      width: 280px;
+      height: 30px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #17a2b8, #138496);
+      color: white;
+      margin: 25px auto 0;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .show-message {
+      opacity: 1;
+    }
+
+    .name {
+      width: 120px;
+      height: 35px;
+      border-radius: 8px;
+      padding-left: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+    }
+
+    .name:focus {
+      border: 1px solid #007bff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0,123,255,0.3);
+    }
+
+    .inputAndButtons {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      width: 355px;
+      gap: 10px;
+    }
+
+    .buttons-right {
+      display: flex;
+      gap: 10px;
+      margin-left: auto;
+    } 
+    .invalid {
+        background-color: #ff4444 !important;
+    }
+
+    .trying {
+        background-color: #ffd859 !important; 
+    }
+
+    .finished {
+        background-color: #69dd84 !important;
+    }
+    .no-solution-message {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+    animation: fadeOut 2s forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+    </style>
+
+<div class="container">
+  <h1 class="sudokuHeader">Sudoku Solver</h1>
+  <p id="timer" class="timer">Time to solve: 0ms</p>
+  <div class="checkbox-container">
+    <div class="visualBacktracking">
+      <input type="checkbox" id="visualBacktracking"> 
+      <span>Visual Backtracking (Slower)</span>
+    </div>
+    <button id="resetButton" class="resetButton">Reset</button>
+  </div>
+
+  <table id="SudokuTable"></table>
+
+  <div class="inputAndButtons">
+    <input type="text" id="name" class="name" placeholder="Game Name">
+    <div class="buttons-right">
+      <button id="sendButton" class="sendButton">Send</button>
+      <button id="loadButton" class="loadButton">Load</button>
+    </div>
+  </div>
+
+  <button id="generateButton" class="generateButton">Generate random Sudoku</button>
+  <button id="solveButton" class="solveButton">Solve</button>
+
+  <div id="message" class="save">Game saved successfully</div>
+  <div id="loadMessage" class="load">Game loaded successfully</div>
+  <p id="solver"></p>
+</div>
+
+</body>
+</html>
