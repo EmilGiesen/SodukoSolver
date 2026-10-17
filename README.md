@@ -1,6 +1,6 @@
 # Sudoku Solver
 
-Dieses Projekt habe ich während eines zweiwöchigen Praktikums bei i2solutions erstellt.
+Dieses Projekt habe ich während eines zweiwöchigen Praktikums bei i2solutions im April 2025 erstellt.
 
 Es besteht aus einem jQuery-Frontend (`Sudoku/`) und einer ASP.NET Core API (`Sudoku Api/`).
 Die gesamte Logik in Frontend und Backend stammt von mir. Nur die HTML-Oberfläche ist mit Unterstützung von Ai erstellt wurden.
