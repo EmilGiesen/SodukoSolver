@@ -4,6 +4,7 @@ Dieses Projekt habe ich während eines zweiwöchigen Praktikums bei i2solutions 
 
 Es besteht aus einem jQuery-Frontend (`Sudoku/`) und einer ASP.NET Core API (`Sudoku Api/`).
 Die gesamte Logik in Frontend und Backend stammt von mir. Nur die HTML-Oberfläche ist mit Unterstützung von Ai erstellt wurden.
+Außerdem wurden die Datein mithilfe von AI richtig geordnet und in Repository hochgeladen geladen da viele Müll und Test Datein übrig waren.
 
 ## Funktionen
 
