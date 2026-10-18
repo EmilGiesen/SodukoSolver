@@ -3,8 +3,8 @@
 Dieses Projekt habe ich während eines zweiwöchigen Praktikums bei i2solutions im April 2025 erstellt.
 
 Es besteht aus einem jQuery-Frontend (`Sudoku/`) und einer ASP.NET Core API (`Sudoku Api/`).
-Die gesamte Logik in Frontend und Backend stammt von mir. Nur die HTML-Oberfläche ist mit Unterstützung von Ai erstellt wurden.
-Außerdem wurden die Datein mithilfe von AI richtig geordnet und in Repository hochgeladen geladen da viele Müll und Test Datein übrig waren.
+Die gesamte Logik in Frontend und Backend stammt von mir. Nur die HTML-Oberfläche ist mit Unterstützung von KI erstellt worden.
+Außerdem wurden die Test- und Müll-Dateien vor dem Upload mithilfe von KI bereinigt.
 
 ## Funktionen
 
@@ -26,3 +26,8 @@ Spielfeld und Fehlerfelder werden jeweils als String mit 81 Zeichen übertragen 
 
 1. API starten: `dotnet run --project "Sudoku Api"` (läuft auf `http://localhost:5049`)
 2. `Sudoku/home.html` im Browser öffnen
+
+## Hinweise
+
+- Die API hat keine Anmeldung und ist nur für den lokalen Betrieb gedacht. CORS ist bewusst offen, damit die Frontends von anderen Ports und als Datei zugreifen können.
+- Die Datenbank (`Sudoku/db.db`) wird beim ersten Start automatisch angelegt.

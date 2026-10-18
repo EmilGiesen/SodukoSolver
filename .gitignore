@@ -6,3 +6,7 @@ bin/
 obj/
 .vs/
 *.user
+
+# Lokale Datenbank (wird beim ersten Start automatisch angelegt)
+*.db
+*.sqbpro
